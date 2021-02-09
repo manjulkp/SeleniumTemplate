@@ -1,7 +1,7 @@
-# Automation For MONEYGAMING Web Application
+# Automation For The National Lottery Web Application
 
 
-## Framework to Automate Functionality of Web UI of MONEYGAMING Web Application
+## Framework to Automate Functionality of Web UI of The National Lottery Web Application
 
 ### Prerequisite for the given application to work after the code is downloaded , zipped and imported into eclipse
 

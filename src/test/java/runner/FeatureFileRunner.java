@@ -69,7 +69,7 @@ public class FeatureFileRunner {
 	@BeforeSuite
 	public WebDriver setup() {
 		driverManager = DriverManagerFactory.getDriverManager(DriverType.CHROME);
-		driverManager.goTo(Url.MONEY_GAMING.getUrl());
+		driverManager.goTo(Url.CAMELOT_APPLICATION.getUrl());
 		webDriver = driverManager.getDriver();
 		return webDriver;
 	}
@@ -82,7 +82,6 @@ public class FeatureFileRunner {
 	public void setUpClass() {
 		testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
 	}
-
 
 	@AfterSuite
 	public void tearDown() {

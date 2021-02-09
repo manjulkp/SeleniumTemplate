@@ -1,7 +1,7 @@
 package core;
 
 public enum Url {
-    MONEY_GAMING("https://moneygaming.qa.gameaccount.com");
+    CAMELOT_APPLICATION("https://t04.interactivetest.co.uk");
  
     private String url;
  

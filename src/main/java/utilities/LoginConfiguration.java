@@ -6,46 +6,40 @@ public class LoginConfiguration {
 	private String surname;
 	private String dateOfBirth;
 	private String emailAddress;
-	private String telephone;
 	private String mobile;
 	private String address;
 	private String city;
 	private String country;
 	private String postcode;
-	private String username;
 	private String password;
 	private String securityQuestion1;
 	private String answer1;
-	private String securityQuestion2;
-	private String answer2;
+
 
 	public LoginConfiguration() {
 
 	}
 
+	
 	public LoginConfiguration(String title, String firstName, String surname, String dateOfBirth, String emailAddress,
-			String telephone, String mobile, String address, String city, String country, String postcode,
-			String username, String password, String securityQuestion1, String answer1, String securityQuestion2,
-			String answer2) {
+			String mobile, String address, String city, String country, String postcode, String password,
+			String securityQuestion1, String answer1) {
 		super();
 		this.title = title;
 		this.firstName = firstName;
 		this.surname = surname;
 		this.dateOfBirth = dateOfBirth;
 		this.emailAddress = emailAddress;
-		this.telephone = telephone;
 		this.mobile = mobile;
 		this.address = address;
 		this.city = city;
 		this.country = country;
 		this.postcode = postcode;
-		this.username = username;
 		this.password = password;
 		this.securityQuestion1 = securityQuestion1;
 		this.answer1 = answer1;
-		this.securityQuestion2 = securityQuestion2;
-		this.answer2 = answer2;
 	}
+
 
 	public String getTitle() {
 		return title;
@@ -87,13 +81,7 @@ public class LoginConfiguration {
 		this.emailAddress = emailAddress;
 	}
 
-	public String getTelephone() {
-		return telephone;
-	}
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
 
 	public String getMobile() {
 		return mobile;
@@ -135,13 +123,6 @@ public class LoginConfiguration {
 		this.postcode = postcode;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
 
 	public String getPassword() {
 		return password;
@@ -167,21 +148,15 @@ public class LoginConfiguration {
 		this.answer1 = answer1;
 	}
 
-	public String getSecurityQuestion2() {
-		return securityQuestion2;
+
+	@Override
+	public String toString() {
+		return "LoginConfiguration [title=" + title + ", firstName=" + firstName + ", surname=" + surname
+				+ ", dateOfBirth=" + dateOfBirth + ", emailAddress=" + emailAddress + ", mobile=" + mobile
+				+ ", address=" + address + ", city=" + city + ", country=" + country + ", postcode=" + postcode
+				+ ", password=" + password + ", securityQuestion1=" + securityQuestion1 + ", answer1=" + answer1 + "]";
 	}
 
-	public void setSecurityQuestion2(String securityQuestion2) {
-		this.securityQuestion2 = securityQuestion2;
-	}
-
-	public String getAnswer2() {
-		return answer2;
-	}
-
-	public void setAnswer2(String answer2) {
-		this.answer2 = answer2;
-	}
 
 	@Override
 	public int hashCode() {
@@ -189,7 +164,6 @@ public class LoginConfiguration {
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((answer1 == null) ? 0 : answer1.hashCode());
-		result = prime * result + ((answer2 == null) ? 0 : answer2.hashCode());
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
 		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
@@ -199,13 +173,11 @@ public class LoginConfiguration {
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((postcode == null) ? 0 : postcode.hashCode());
 		result = prime * result + ((securityQuestion1 == null) ? 0 : securityQuestion1.hashCode());
-		result = prime * result + ((securityQuestion2 == null) ? 0 : securityQuestion2.hashCode());
 		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
-		result = prime * result + ((telephone == null) ? 0 : telephone.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -225,11 +197,6 @@ public class LoginConfiguration {
 			if (other.answer1 != null)
 				return false;
 		} else if (!answer1.equals(other.answer1))
-			return false;
-		if (answer2 == null) {
-			if (other.answer2 != null)
-				return false;
-		} else if (!answer2.equals(other.answer2))
 			return false;
 		if (city == null) {
 			if (other.city != null)
@@ -276,42 +243,17 @@ public class LoginConfiguration {
 				return false;
 		} else if (!securityQuestion1.equals(other.securityQuestion1))
 			return false;
-		if (securityQuestion2 == null) {
-			if (other.securityQuestion2 != null)
-				return false;
-		} else if (!securityQuestion2.equals(other.securityQuestion2))
-			return false;
 		if (surname == null) {
 			if (other.surname != null)
 				return false;
 		} else if (!surname.equals(other.surname))
-			return false;
-		if (telephone == null) {
-			if (other.telephone != null)
-				return false;
-		} else if (!telephone.equals(other.telephone))
 			return false;
 		if (title == null) {
 			if (other.title != null)
 				return false;
 		} else if (!title.equals(other.title))
 			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "LoginConfiguration [title=" + title + ", firstName=" + firstName + ", surname=" + surname
-				+ ", dateOfBirth=" + dateOfBirth + ", emailAddress=" + emailAddress + ", telephone=" + telephone
-				+ ", mobile=" + mobile + ", address=" + address + ", city=" + city + ", country=" + country
-				+ ", postcode=" + postcode + ", username=" + username + ", password=" + password
-				+ ", securityQuestion1=" + securityQuestion1 + ", answer1=" + answer1 + ", securityQuestion2="
-				+ securityQuestion2 + ", answer2=" + answer2 + "]";
 	}
 
 }

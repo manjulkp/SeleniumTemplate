@@ -1,23 +1,19 @@
 {
    "TestData":{
       "UserData":{
-         "title":"Mrs",
+         "title":"MRS",
          "firstName":"Manjula",
-         "surname":"Puttasetty",
-         "dateOfBirth":"02-07-1980",
-         "emailAddress":"testing@gmail.com",
-         "telephone":"9886695431",
-         "mobile":"9886695431",
-         "address":"81 Brightwell road",
-         "city":"Watford",
-         "country":"UK",
-         "postcode":"Wd18 0HR",
+         "lastName":"Puttasetty",
+         "dateOfBirth":"2-Jan-1985",
+         "emailAddress":"testing",
+         "mobile":"7889232886",
+         "address":"83 Brightwell Road",
+         "postcode":"WD18 0HR",
          "username":"manjulakp",
-         "password":"window123",
-         "securityQuestion1":"What is your mom name",
+         "password":"Camelot123",
+         "securityQuestion1":"1",
          "answer1":"sheela",
-         "securityQuestion2":"what is your son name",
-         "answer2":"avaneesh"
+     
       }
    }
 }

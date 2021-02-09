@@ -15,8 +15,9 @@ public class ChromeDriverManager extends DriverManager{
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions(); 
 		options.setExperimentalOption("useAutomationExtension", false);
-		options.setExperimentalOption("excludeSwitches",Collections.singletonList("enable-automation"));    
-		
+		options.setExperimentalOption("excludeSwitches",Collections.singletonList("enable-automation"));
+		options.addArguments("--disable-notifications");
+
 		webDriver = new ChromeDriver(options);
 		webDriver.manage().window().maximize();
 		webDriver.manage().timeouts().implicitlyWait(500, TimeUnit.SECONDS);

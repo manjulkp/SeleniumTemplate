@@ -14,23 +14,24 @@ public class HomeScreenSteps  {
 	
 
 	@Given("the application is launched")
-	public void the_application_is_launched() {		
+	public void the_application_is_launched() {
+	   homePage.acceptCookies();
        assertThat(homePage.isHomeScreenlaunched()).isTrue();
 	}
 
 	@Then("the title of the page is")
 	public void the_title_of_the_page_is() {
 		String actual = homePage.getTitle();
-		String expected = "Play Online Casino Games Now | MoneyGaming.com";
+		String expected = "Home | The National Lottery";
 		assertThat(actual).isEqualTo(expected);
 	}
 	
-	@Then("the JOIN NOW option is present")
-	public void the_JOIN_NOW_option_is_present() {
+	@Then("the Open Account option is present")
+	public void the_Open_Account_option_is_present() {
 		assertThat(homePage.isHomeScreenlaunched()).isTrue(); 
 	}
 	
-	@When("the User navigate to SignIn screen")
+	@When("the User navigate to Open Account screen")
 	public void the_User_navigate_to_SignIn_screen() {
 	   homePage.navigateToSignUpPage();
 	}

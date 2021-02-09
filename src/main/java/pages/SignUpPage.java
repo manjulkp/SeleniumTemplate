@@ -1,145 +1,168 @@
 package pages;
 
+import java.util.Random;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utilities.LoginConfiguration;
 
+public class SignUpPage extends BasePage {
 
-
-public class SignUpPage extends BasePage{
-	
 	private static final String TERMS_AND_CONDITION_LABEL = "map(terms)";
 	private static final String DATE_OF_BIRTH_LABEL = "dob";
 
-	@FindBy(name = "map(title)")
+	@FindBy(id = "form_title")
 	private WebElement title;
-	
-	@FindBy(id = "forename")
+
+	@FindBy(id = "form_firstName")
 	private WebElement firstName;
-	
-	@FindBy(name = "map(lastName)")
+
+	@FindBy(id = "form_lastName")
 	private WebElement surname;
-	
-	@FindBy(name = "map(dobDay)")
+
+	@FindBy(id = "form_dateOfBirth_day")
 	private WebElement birthDay;
-	
-	@FindBy(name = "map(dobMonth)")
+
+	@FindBy(id = "form_dateOfBirth_month")
 	private WebElement birthMonth;
-	
-	@FindBy(name = "map(dobYear)")
+
+	@FindBy(id = "form_dateOfBirth_year")
 	private WebElement birthYear;
-	
-	@FindBy(name = "map(email)")
+
+	@FindBy(id = "form_emailAddress")
 	private WebElement emailAddress;
 	
-	@FindBy(name = "map(phone)")
-	private WebElement telephone;
-	
-	@FindBy(name = "map(mobile)")
-	private WebElement mobile;
-	
-	@FindBy(name = "map(address1)")
-	private WebElement addressLine1;
-	
-	@FindBy(name = "map(addressCity)")
-	private WebElement city;
-	
-	@FindBy(name = "map(stateProv)")
-	private WebElement country;
-	
-	@FindBy(name = "map(postCode)")
+	@FindBy(id = "form_emailAddressConfirm")
+	private WebElement confirmEmailAddress;
+
+	@FindBy(id = "form_house")
+	private WebElement addressLine;
+
+	@FindBy(id = "form_postCode")
 	private WebElement postcode;
 	
-	@FindBy(name = "map(countryCode)")
-	private WebElement countryCode;
-	
-	@FindBy(name = "map(userName)")
-	private WebElement username;
-	
-	@FindBy(id = "password")
+	@FindBy(name = "journey_save")
+	private WebElement nextButton;
+
+	@FindBy(id = "form_password")
 	private WebElement password;
-	
-	@FindBy(name = "map(passwordConfirm)")
-	private WebElement retypePassword;
-	
-	@FindBy(name = "map(securityQuestionOne)")
+
+	@FindBy(name = "securityQuestionId")
 	private WebElement securityQuestion1;
-	
-	@FindBy(name = "map(securityAnswerOne)")
+
+	@FindBy(id = "form_form_security_answer")
 	private WebElement answer1;
-	
-	@FindBy(name = "map(securityQuestionTwo)")
-	private WebElement securityQuestion2;
-	
-	@FindBy(name = "map(securityAnswerTwo)")
-	private WebElement answer2;
-	
-	@FindBy(name = "map(currency)")
-	private WebElement currency;
-	
-	@FindBy(name = "map(terms)")
-	private WebElement termsAndConditions;
-	
-	@FindBy(id = "form")
-	private WebElement joinNowButton;
-	
+
+	@FindBy(id = "form_communications_no")
+	private WebElement preference_No;
+
+	@FindBy(id = "policy_link")
+	private WebElement policyLink;
+
+	@FindBy(id = "journey_save")
+	private WebElement createAccount;
+
 	public SignUpPage(WebDriver webDriver) {
 		super(webDriver);
 	}
-	
-	public void populateTitleData(LoginConfiguration user) {
-		populateField(title, user.getTitle());
-	}
-	
+
 	public void populateFirstNameData(LoginConfiguration user) {
 		populateField(firstName, user.getFirstName());
 	}
-	
+
 	public void populateSurNameData(LoginConfiguration user) {
-		populateField(surname, user.getSurname());
+		populateField(surname, user.getSurname()+randomCharacters());
+	}
+
+	public void selectDateOfBirth(LoginConfiguration user) {
+		String[] dateOfBirthArray = splitDateOfBirth(user.getDateOfBirth());
+		selectFromDropdownByText(birthDay, dateOfBirthArray[0]);
+		selectFromDropdownByText(birthMonth, dateOfBirthArray[1]);
+		selectFromDropdownByText(birthYear, dateOfBirthArray[2]);
+	}
+
+	private String[] splitDateOfBirth(String dateOfBirth) {
+		return dateOfBirth.split("-");
 	}
 	
+	public void selectEmail(LoginConfiguration user) {
+		String email = user.getEmailAddress()+gen()+"@gmail.com";
+		user.setEmailAddress(email);
+		populateField(emailAddress, user.getEmailAddress());
+		populateField(confirmEmailAddress, user.getEmailAddress());
+	}
+
 	public void populateAddressData(LoginConfiguration user) {
-		populateField(addressLine1, user.getAddress());
-		populateField(city, user.getCity());
-		populateField(country, user.getCountry());
-		populateField(postcode, user.getPostcode() );
+		populateField(addressLine, user.getAddress());
+		populateField(postcode, user.getPostcode());
+		click(nextButton);
+//		waitElement(nextButton);
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		click(nextButton);
 	}
-	
+
 	public void populateAccountData(LoginConfiguration user) {
-		populateField(username, user.getUsername());
 		populateField(password, user.getPassword());
-		populateField(retypePassword, user.getPassword());
 		selectFromDropdownByValue(securityQuestion1, user.getSecurityQuestion1());
 		populateField(answer1, user.getAnswer1());
-		selectFromDropdownByValue(securityQuestion2, user.getSecurityQuestion2());
-		populateField(answer2, user.getAnswer2());
 	}
-	
-	public void selectCurrency(String value) {
-		selectFromDropdownByValue(currency, value);
+
+	public void selectPreference() {
+		click(preference_No);
+		scroll(policyLink);
+		click(createAccount);
 	}
-	
-	public void checkTemrsAndCondition() {
-		selectCheckbox(termsAndConditions);
+
+	public void selectTitle(LoginConfiguration user) {
+		selectFromDropdownByValue(title, user.getTitle());
 	}
-	
-	public void clickJoinNow() {
-		click(joinNowButton);
-	}
-	
+
+
 	public String getTermsAndConditionErrorMessage() {
 		return getFieldInlineErrorMessage(TERMS_AND_CONDITION_LABEL);
 	}
-	
+
 	public String getDateOfBirthErrorMessage() {
 		return getFieldInlineErrorMessage(DATE_OF_BIRTH_LABEL);
 	}
-	
+
 	private String getFieldInlineErrorMessage(String labelFor) {
-		WebElement label = webDriver.findElement(By.xpath(String.format("//fieldset/label[@for='%s']", labelFor)));		
+		WebElement label = webDriver.findElement(By.xpath(String.format("//fieldset/label[@for='%s']", labelFor)));
 		return label.getText();
+	}
+	
+	private int gen() {
+	    Random r = new Random( System.currentTimeMillis() );
+	    return ((1 + r.nextInt(2)) * 10000 + r.nextInt(10000));
+	}
+	
+	private static String randomCharacters() {
+		// create a string of all characters
+	    String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	    // create random string builder
+	    StringBuilder sb = new StringBuilder();
+	    // create an object of Random class
+	    Random random = new Random();
+	    // specify length of random string
+	    int length = 7;
+	    for(int i = 0; i < length; i++) {
+	      // generate random index number
+	      int index = random.nextInt(alphabet.length());
+	      // get character specified by index
+	      // from the string
+	      char randomChar = alphabet.charAt(index);
+	      // append the character to string builder
+	      sb.append(randomChar);
+	    }
+
+	   return sb.toString().toLowerCase();
+	    
 	}
 }

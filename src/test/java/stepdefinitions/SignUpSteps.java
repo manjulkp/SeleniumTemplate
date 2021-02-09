@@ -18,7 +18,8 @@ public class SignUpSteps {
 	public void the_User_select_the_options_for_Title(io.cucumber.datatable.DataTable dataTable) {
 		List<List<String>> data = dataTable.asLists(String.class);
 		config.setTitle(FeatureFileRunner.testDataDetails.get(data.get(0).get(1)));
-		signUpPage.populateTitleData(config);
+		
+		signUpPage.selectTitle(config);
 	}
 
 	@When("the User select the options for FirstName")
@@ -32,25 +33,45 @@ public class SignUpSteps {
 	@When("the User select the options for Surname")
 	public void the_User_select_the_options_for_Surname(io.cucumber.datatable.DataTable dataTable) {
 		List<List<String>> data = dataTable.asLists(String.class);
-		config.setSurname(FeatureFileRunner.testDataDetails.get(data.get(0).get(1)));
-		signUpPage.populateFirstNameData(config);
+		config.setSurname(FeatureFileRunner.testDataDetails.get(data.get(0).get(1)));		
+		signUpPage.populateSurNameData(config);
+	}
+	
+	@When("the User select the options for DateOfBirth")
+	public void the_User_select_the_options_for_DateOfBirth(io.cucumber.datatable.DataTable dataTable) {
+		List<List<String>> data = dataTable.asLists(String.class);
+		config.setDateOfBirth(FeatureFileRunner.testDataDetails.get(data.get(0).get(1)));
+	    signUpPage.selectDateOfBirth(config);
+	}
+	
+	@When("the User select the options for Email")
+	public void the_User_select_the_options_for_Email(io.cucumber.datatable.DataTable dataTable) {
+		List<List<String>> data = dataTable.asLists(String.class);
+		config.setEmailAddress(FeatureFileRunner.testDataDetails.get(data.get(0).get(1)));
+	    signUpPage.selectEmail(config); 
+	}
+	
+	@When("the User select the options for Address")
+	public void the_User_select_the_options_for_Address(io.cucumber.datatable.DataTable dataTable) {
+		List<List<String>> data = dataTable.asLists(String.class);
+		config.setAddress(FeatureFileRunner.testDataDetails.get(data.get(0).get(1)));
+		config.setPostcode(FeatureFileRunner.testDataDetails.get(data.get(1).get(1)));
+		signUpPage.populateAddressData(config);
+	}
+	
+	@When("the User select the options to create password along with security question")
+	public void the_User_select_the_options_to_create_password_along_with_security_question(io.cucumber.datatable.DataTable dataTable) {
+		List<List<String>> data = dataTable.asLists(String.class);
+		config.setPassword(FeatureFileRunner.testDataDetails.get(data.get(0).get(1)));
+		config.setSecurityQuestion1(FeatureFileRunner.testDataDetails.get(data.get(1).get(1)));
+		config.setAnswer1(FeatureFileRunner.testDataDetails.get(data.get(2).get(1)));
+		signUpPage.populateAccountData(config);
+	}
+	
+	@When("the User select the options to set the preference for notification with completing user registration")
+	public void the_User_select_the_options_to_set_the_preference_for_notification_with_completing_user_registration() {
+		signUpPage.selectPreference();
 	}
 
-	@When("the User accepts terms and condition")
-	public void the_User_accepts_terms_and_condition() {
-		signUpPage.checkTemrsAndCondition();
-	}
-
-	@When("the User completes the registration by selecting JOIN NOW")
-	public void the_User_completes_the_registration_by_selecting_JOIN_NOW() {
-		signUpPage.clickJoinNow();
-	}
-
-	@Then("the User should see {string} appearing under the date of birth")
-	public void the_User_should_see_appearing_under_the_date_of_birth(String inlineText) {
-		String actual = signUpPage.getDateOfBirthErrorMessage();
-		String expected = "This field is required";
-		assertThat(actual).isEqualTo(expected);
-	}
 
 }

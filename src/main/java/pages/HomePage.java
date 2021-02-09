@@ -6,15 +6,21 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
 
-	@FindBy(xpath = "//div[@class='login_links']/a[text()='Join Now!']")
-	private WebElement joinNowButton;
+	@FindBy(xpath = "//a[contains(text(),'Open account')]")
+	private WebElement openAccountButton;
 
-	public HomePage(WebDriver webDriver) {	
+	@FindBy(xpath = "//a[contains(text(),' Accept All Cookies ')]")
+	private WebElement acceptTermsAndConditionButton;
+
+	@FindBy(id = "com_cookie_policy_close")
+	private WebElement closeCookieButton;
+
+	public HomePage(WebDriver webDriver) {
 		super(webDriver);
 	}
 
 	public SignUpPage navigateToSignUpPage() {
-		click(joinNowButton);
+		click(openAccountButton);
 		return new SignUpPage(webDriver);
 	}
 
@@ -23,7 +29,14 @@ public class HomePage extends BasePage {
 	}
 
 	public boolean isHomeScreenlaunched() {
-		return isPresent(joinNowButton);
+		return isPresent(openAccountButton);
+	}
+
+	public void acceptCookies() {
+		if (isPresent(acceptTermsAndConditionButton)) {
+			click(acceptTermsAndConditionButton);
+			click(closeCookieButton);
+		}
 	}
 
 }

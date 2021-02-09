@@ -5,7 +5,7 @@
     <classes>
       <class name="runner.FeatureFileRunner">
         <methods>
-          <include name="scenario" invocation-numbers="1"/>
+          <include name="scenario" invocation-numbers="0"/>
           <include name="generateReport"/>
           <include name="tearDown"/>
           <include name="setUpClass"/>

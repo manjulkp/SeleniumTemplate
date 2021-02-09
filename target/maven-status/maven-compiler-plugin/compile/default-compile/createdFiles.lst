@@ -1,11 +1,1 @@
-core/ChromeDriverManager.class
-core/DriverType.class
-core/Url.class
-utilities/LoginConfiguration.class
-utilities/JsonParser.class
-core/DriverManager.class
-pages/HomePage.class
-pages/BasePage.class
-pages/SignUpPage.class
-core/DriverManagerFactory.class
 core/DriverManagerFactory$1.class
